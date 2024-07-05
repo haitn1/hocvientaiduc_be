@@ -1,0 +1,16 @@
+type Item {
+    id: ID!
+    name: String
+    updated: Date!
+    created: Date!
+}
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  item : Item
+  items : [Item]
+}
+
+
+

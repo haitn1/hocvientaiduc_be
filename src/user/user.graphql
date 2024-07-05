@@ -1,0 +1,23 @@
+type User {
+    user_id: ID!
+    full_name : String
+    gender : Int
+    email : String
+    birth_day : Date
+    phone : String
+    password : String
+    note : String
+    presenter_id:Int
+    create_at : Date
+    update_at : Date
+}
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  user(user_id: Int): User!
+  users : [User]
+}
+
+
+
