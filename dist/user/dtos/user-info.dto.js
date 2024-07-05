@@ -13,4 +13,4 @@ class UserInfoResponseDto {
     }
 }
 exports.UserInfoResponseDto = UserInfoResponseDto;
-//# sourceMappingURL=user-info-dto.js.map
+//# sourceMappingURL=user-info.dto.js.map

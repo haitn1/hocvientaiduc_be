@@ -1,41 +1,38 @@
 
 import { Presenter } from "src/presenter/entities/presenter.entity";
-import { BaseEntity, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity()
-export class User extends BaseEntity{
+@Entity('user')
+export class UserEntity extends BaseEntity{
    @PrimaryGeneratedColumn()
    user_id : number;
-   @Column({default:""})
+   @Column()
    full_name : string;
 
-   @Column({default:0})
+   @Column()
    gender : number;
 
-   @Column({default:""})
+   @Column()
    email : string;
 
-   @Column({default:null})
+   @Column()
    birth_day : Date;
 
-   @Column({default:""})
+   @Column()
    phone : string;
 
-   @Column({default:""})
+   @Column()
    password : string;
 
-   @Column({default:""})
+   @Column()
    note : string;
 
-   @Column({default:1})
+   @Column()
    presenter_id:number;
-/*
-   @ManyToOne(type =>  Presenter,  presenter =>  presenter.id)
-   presenter: Presenter;
-*/
-   @Column({default:null})
+
+   @CreateDateColumn()
    create_at : Date;
 
-   @Column({default:null})
+   @UpdateDateColumn()
    update_at : Date;
 }

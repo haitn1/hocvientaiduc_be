@@ -1,0 +1,22 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+type Query {
+  user(): User
+}
+
+type User {
+  user_id: Int;
+  full_name : String!;
+  gender : Int;
+  email : String!;
+  birth_day : Date!;
+  phone : String!;
+  password : String!;
+  note : String!;
+  presenter_id:Int;
+  create_at :  Date!;
+  update_at :  Date!;
+}
+
+

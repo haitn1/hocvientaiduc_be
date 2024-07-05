@@ -4,23 +4,23 @@ import {
     EventSubscriber,
     InsertEvent,
   } from 'typeorm';
-  import { User } from './user.entity';
+  import { UserEntity } from './user.entity';
   
   @EventSubscriber()
-  export class UserSubscriber implements EntitySubscriberInterface<User> {
+  export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
     constructor(dataSource: DataSource) {
       dataSource.subscribers.push(this);
     }
   
     listenTo() {
-      return User;
+      return UserEntity;
     }
   
-    beforeInsert(event: InsertEvent<User>) {
+    beforeInsert(event: InsertEvent<UserEntity>) {
       console.log(`UserSubscriber- BEFORE USER INSERTED: `, event.entity);
     }
 
-    afterInsert(event: InsertEvent<User>): void | Promise<any> {
+    afterInsert(event: InsertEvent<UserEntity>): void | Promise<any> {
       console.log(`UserSubscriber- After USER INSERTED: `, event.entity);
     }
   }

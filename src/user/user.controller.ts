@@ -1,13 +1,13 @@
 import { Controller, Res, Get, Redirect, Param, ParseIntPipe, Post, Req, Body, Query, Put , Delete, HttpCode, HttpStatus, HttpException, UseGuards, UseInterceptors, DefaultValuePipe} from '@nestjs/common';
 import IUserRequest from './interfaces/user-request.interface';
-import { UserInfoResponseDto } from './dtos/user-info-dto';
+import { UserInfoResponseDto } from './dtos/user-info.dto';
 import { Request, query } from 'express';
 import { UserCreaterDto } from './dtos/create-user-dto';
 import { Response } from 'express';
 import { UserService } from './user.service';
 import { IUser } from 'src/user/interfaces/user.interface';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { User } from './entities/user.entity';
+import { UserEntity } from './entities/user.entity';
 import { LoggerInterceptor } from 'src/core/interceptors/logging.interceptor';
 @Controller('users')
 //@UseGuards(AuthGuard)

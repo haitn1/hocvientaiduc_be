@@ -17,8 +17,7 @@ const presenter_module_1 = require("./presenter/presenter.module");
 const product_module_1 = require("./product/product.module");
 const apollo_1 = require("@nestjs/apollo");
 const dist_1 = require("@nestjs/graphql/dist");
-const path_1 = require("path");
-const recipes_module_1 = require("./recipes/recipes.module");
+const authors_resolver_1 = require("./authors/authors.resolver");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -31,18 +30,17 @@ exports.AppModule = AppModule = __decorate([
                 username: 'root',
                 password: '',
                 database: 'hocvientaiduc_db',
-                entities: [user_entity_1.User],
+                entities: [user_entity_1.UserEntity],
                 synchronize: true,
                 autoLoadEntities: true,
             }), user_module_1.UserModule, presenter_module_1.PresenterModule, product_module_1.ProductModule,
-            recipes_module_1.RecipesModule,
             dist_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
-                autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
+                autoSchemaFile: 'schema.gql',
             }),
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService]
+        providers: [app_service_1.AppService, authors_resolver_1.AuthorsResolver]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

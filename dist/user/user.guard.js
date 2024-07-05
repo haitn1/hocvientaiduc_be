@@ -6,26 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RecipesService = void 0;
+exports.UsersGuard = void 0;
 const common_1 = require("@nestjs/common");
-let RecipesService = class RecipesService {
-    async create(data) {
-        return {
-            id: 3,
-        };
-    }
-    async findOneById(id) {
-        return {};
-    }
-    async findAll(recipesArgs) {
-        return [];
-    }
-    async remove(id) {
+const graphql_1 = require("@nestjs/graphql");
+let UsersGuard = class UsersGuard {
+    canActivate(context) {
+        const ctx = graphql_1.GqlExecutionContext.create(context);
         return true;
     }
 };
-exports.RecipesService = RecipesService;
-exports.RecipesService = RecipesService = __decorate([
+exports.UsersGuard = UsersGuard;
+exports.UsersGuard = UsersGuard = __decorate([
     (0, common_1.Injectable)()
-], RecipesService);
-//# sourceMappingURL=recipes.service.js.map
+], UsersGuard);
+//# sourceMappingURL=user.guard.js.map

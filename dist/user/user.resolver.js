@@ -9,28 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RecipesArgs = void 0;
+exports.UserResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const class_validator_1 = require("class-validator");
-let RecipesArgs = class RecipesArgs {
-    constructor() {
-        this.skip = 0;
-        this.take = 25;
+const user_model_1 = require("./models/user.model");
+const user_service_1 = require("./user.service");
+let UserResolver = class UserResolver {
+    constructor(userService) {
+        this.userService = userService;
+    }
+    async user() {
+        return this.userService.findOne();
     }
 };
-exports.RecipesArgs = RecipesArgs;
+exports.UserResolver = UserResolver;
 __decorate([
-    (0, graphql_1.Field)(type => graphql_1.Int),
-    (0, class_validator_1.Min)(0),
-    __metadata("design:type", Object)
-], RecipesArgs.prototype, "skip", void 0);
-__decorate([
-    (0, graphql_1.Field)(type => graphql_1.Int),
-    (0, class_validator_1.Min)(1),
-    (0, class_validator_1.Max)(50),
-    __metadata("design:type", Object)
-], RecipesArgs.prototype, "take", void 0);
-exports.RecipesArgs = RecipesArgs = __decorate([
-    (0, graphql_1.ArgsType)()
-], RecipesArgs);
-//# sourceMappingURL=recipes.args.js.map
+    (0, graphql_1.Query)(returns => user_model_1.User),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "user", null);
+exports.UserResolver = UserResolver = __decorate([
+    (0, graphql_1.Resolver)(of => user_model_1.User),
+    __metadata("design:paramtypes", [user_service_1.UserService])
+], UserResolver);
+//# sourceMappingURL=user.resolver.js.map

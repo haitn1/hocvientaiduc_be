@@ -1,7 +1,6 @@
 import { DynamicModule, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { resolve } from "path";
-import { User } from "./user/entities/user.entity";
 
 @Module({
 

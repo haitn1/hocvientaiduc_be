@@ -17,7 +17,7 @@ let UserSubscriber = class UserSubscriber {
         dataSource.subscribers.push(this);
     }
     listenTo() {
-        return user_entity_1.User;
+        return user_entity_1.UserEntity;
     }
     beforeInsert(event) {
         console.log(`UserSubscriber- BEFORE USER INSERTED: `, event.entity);
