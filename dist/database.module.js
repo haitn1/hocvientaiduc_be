@@ -18,10 +18,10 @@ let DatabaseModule = DatabaseModule_1 = class DatabaseModule {
             imports: [
                 typeorm_1.TypeOrmModule.forRoot({
                     type: 'mysql',
-                    host: '125.212.218.93',
+                    host: 'localhost',
                     port: 3306,
-                    username: 'root_haitn',
-                    password: 'HVTD01!@1986',
+                    username: 'root',
+                    password: '123456',
                     database: 'hocvientaiduc_db',
                     synchronize: true,
                     keepConnectionAlive: true,
