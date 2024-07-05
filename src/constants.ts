@@ -1,0 +1,2 @@
+export const APP_INTERCEPTOR = 'APP_INTERCEPTOR';
+export const CONFIG_OPTIONS = 'CONFIG_OPTIONS';
