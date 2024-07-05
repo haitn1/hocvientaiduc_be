@@ -12,12 +12,11 @@ const app_controller_1 = require("./app.controller");
 const user_module_1 = require("./user/user.module");
 const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("./user/entities/user.entity");
 const presenter_module_1 = require("./presenter/presenter.module");
 const product_module_1 = require("./product/product.module");
 const apollo_1 = require("@nestjs/apollo");
 const dist_1 = require("@nestjs/graphql/dist");
-const authors_resolver_1 = require("./authors/authors.resolver");
+const item_module_1 = require("./item/item.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,17 +29,17 @@ exports.AppModule = AppModule = __decorate([
                 username: 'root',
                 password: '',
                 database: 'hocvientaiduc_db',
-                entities: [user_entity_1.UserEntity],
+                entities: [],
                 synchronize: true,
                 autoLoadEntities: true,
             }), user_module_1.UserModule, presenter_module_1.PresenterModule, product_module_1.ProductModule,
             dist_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
-                autoSchemaFile: 'schema.gql',
+                typePaths: ['./**/*.graphql'],
             }),
-        ],
+            item_module_1.ItemModule,],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, authors_resolver_1.AuthorsResolver]
+        providers: [app_service_1.AppService]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

@@ -12,48 +12,32 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.ItemService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const user_entity_1 = require("./entities/user.entity");
-let UserService = class UserService {
+const item_entity_1 = require("./item.entity");
+let ItemService = class ItemService {
     constructor(itemRepo) {
         this.itemRepo = itemRepo;
     }
+    async create(item) {
+        return this.itemRepo.save(item);
+    }
     async findAll() {
-        return await this.itemRepo.find();
+        return this.itemRepo.find();
     }
-    async findOne() {
-        return this.itemRepo.findOne({});
+    findOneById(id) {
+        return this.itemRepo.findOneBy({ id: id });
     }
-    async findOneById(user_id) {
-        return this.itemRepo.findOneBy({ user_id: user_id });
-    }
-    async create(user) {
-        const u = new user_entity_1.User();
-        u.full_name = user.full_name;
-        u.email = user.email;
-        u.password = user.password;
-        u.phone = user.phone;
-        u.gender = user.gender;
-        u.birth_day = user.birth_day;
-        u.note = user.note;
-        u.presenter_id = user.presenter_id;
-        u.create_at = new Date();
-        u.update_at = new Date();
-        const us = await this.itemRepo.save(u);
-        await console.log(`UserService - Insert new User ${JSON.stringify(us)}`);
-        return us;
-    }
-    user() {
+    item() {
         return this.itemRepo.findOne({});
     }
 };
-exports.UserService = UserService;
-exports.UserService = UserService = __decorate([
+exports.ItemService = ItemService;
+exports.ItemService = ItemService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(0, (0, typeorm_1.InjectRepository)(item_entity_1.Item)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], UserService);
-//# sourceMappingURL=user.service.js.map
+], ItemService);
+//# sourceMappingURL=item.service.js.map

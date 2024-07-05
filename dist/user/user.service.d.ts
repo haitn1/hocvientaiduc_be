@@ -1,6 +1,6 @@
 import { UserCreaterDto } from "./dtos/create-user-dto";
 import { Repository } from "typeorm";
-import { User } from "./models/user.model";
+import { User } from "./entities/user.entity";
 export declare class UserService {
     private itemRepo;
     constructor(itemRepo: Repository<User>);

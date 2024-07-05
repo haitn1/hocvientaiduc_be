@@ -4,15 +4,16 @@ import { UserModule } from './user/user.module';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
-import { UserEntity } from './user/entities/user.entity';
+import { User } from './user/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { PresenterModule } from './presenter/presenter.module';
 import { ProductModule } from './product/product.module';
-
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql/dist';
 import { join } from 'path';
-import { AuthorsResolver } from './authors/authors.resolver';
+import { ItemModule } from './item/item.module';
+import { DirectiveLocation, GraphQLDirective } from 'graphql';
 
 @Module({
   imports:[ TypeOrmModule.forRoot({
@@ -22,17 +23,19 @@ import { AuthorsResolver } from './authors/authors.resolver';
     username: 'root',
     password: '',
     database: 'hocvientaiduc_db',
-    entities:[UserEntity],
+    entities:[],
     synchronize: true,
     autoLoadEntities: true,
   }),UserModule, PresenterModule,ProductModule,
   GraphQLModule.forRoot<ApolloDriverConfig>({
     driver: ApolloDriver,
-    autoSchemaFile: 'schema.gql',
+    typePaths: ['./**/*.graphql'],
+ 
   }),
+  ItemModule,
 ],
   controllers: [AppController],
-  providers: [AppService, AuthorsResolver ]
+  providers: [AppService ]
 
 })
 export class AppModule {

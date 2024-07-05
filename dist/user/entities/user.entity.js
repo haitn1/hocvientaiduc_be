@@ -9,56 +9,69 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserEntity = void 0;
+exports.User = void 0;
+const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("typeorm");
-let UserEntity = class UserEntity extends typeorm_1.BaseEntity {
+let User = class User extends typeorm_1.BaseEntity {
 };
-exports.UserEntity = UserEntity;
+exports.User = User;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", Number)
-], UserEntity.prototype, "user_id", void 0);
+], User.prototype, "user_id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], UserEntity.prototype, "full_name", void 0);
+], User.prototype, "full_name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", Number)
-], UserEntity.prototype, "gender", void 0);
+], User.prototype, "gender", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], UserEntity.prototype, "email", void 0);
+], User.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", Date)
-], UserEntity.prototype, "birth_day", void 0);
+], User.prototype, "birth_day", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], UserEntity.prototype, "phone", void 0);
+], User.prototype, "phone", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], UserEntity.prototype, "password", void 0);
+], User.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], UserEntity.prototype, "note", void 0);
+], User.prototype, "note", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", Number)
-], UserEntity.prototype, "presenter_id", void 0);
+], User.prototype, "presenter_id", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", Date)
-], UserEntity.prototype, "create_at", void 0);
+], User.prototype, "create_at", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", Date)
-], UserEntity.prototype, "update_at", void 0);
-exports.UserEntity = UserEntity = __decorate([
-    (0, typeorm_1.Entity)('user')
-], UserEntity);
+], User.prototype, "update_at", void 0);
+exports.User = User = __decorate([
+    (0, typeorm_1.Entity)('user'),
+    (0, graphql_1.ObjectType)()
+], User);
 //# sourceMappingURL=user.entity.js.map

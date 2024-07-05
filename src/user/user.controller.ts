@@ -7,7 +7,7 @@ import { Response } from 'express';
 import { UserService } from './user.service';
 import { IUser } from 'src/user/interfaces/user.interface';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { UserEntity } from './entities/user.entity';
+import { User } from './entities/user.entity';
 import { LoggerInterceptor } from 'src/core/interceptors/logging.interceptor';
 @Controller('users')
 //@UseGuards(AuthGuard)

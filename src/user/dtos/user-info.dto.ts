@@ -1,8 +1,8 @@
-import { UserEntity } from "../entities/user.entity";
+import { User } from "../entities/user.entity";
 import { IUser } from "src/user/interfaces/user.interface";
 
 export class UserInfoResponseDto implements IUser{
-    constructor(user: UserEntity){
+    constructor(user: User){
         this.user_id = user.user_id;
         this.full_name = user.full_name;
         this.email = user.email;

@@ -21,7 +21,7 @@ let DateScalar = class DateScalar {
     }
     parseLiteral(ast) {
         if (ast.kind === graphql_2.Kind.INT) {
-            return parseInt(ast.value, 10);
+            return new Date(ast.value);
         }
         return null;
     }

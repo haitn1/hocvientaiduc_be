@@ -6,23 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModule = void 0;
+exports.ItemModule = void 0;
 const common_1 = require("@nestjs/common");
-const user_controller_1 = require("./user.controller");
-const user_service_1 = require("./user.service");
-const user_entity_1 = require("./entities/user.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-const user_subscribers_1 = require("./entities/user.subscribers");
-const user_resolver_1 = require("./user.resolver");
+const item_resolver_1 = require("./item.resolver");
+const item_service_1 = require("./item.service");
+const item_entity_1 = require("./item.entity");
 const date_scalar_1 = require("../common/scalars/date.scalar");
-let UserModule = class UserModule {
+let ItemModule = class ItemModule {
 };
-exports.UserModule = UserModule;
-exports.UserModule = UserModule = __decorate([
+exports.ItemModule = ItemModule;
+exports.ItemModule = ItemModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User])],
-        controllers: [user_controller_1.UserController],
-        providers: [user_service_1.UserService, user_subscribers_1.UserSubscriber, user_resolver_1.UserResolver, date_scalar_1.DateScalar]
+        imports: [typeorm_1.TypeOrmModule.forFeature([item_entity_1.Item])],
+        providers: [item_resolver_1.ItemResolver, item_service_1.ItemService, date_scalar_1.DateScalar],
     })
-], UserModule);
-//# sourceMappingURL=user.module.js.map
+], ItemModule);
+//# sourceMappingURL=item.module.js.map
