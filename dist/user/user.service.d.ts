@@ -10,6 +10,8 @@ export declare class UserService {
     findAll(): Promise<User[]>;
     findOne(): Promise<User>;
     findOneById(user_id: number): Promise<User>;
+    findOneByEmail(email: string): Promise<User>;
+    createBySignIn(name: string, email: string, password: string): Promise<User>;
     create(user: UserCreaterDto): Promise<User>;
     user(): Promise<User>;
     activeByUserId(user_id: number): Promise<User>;

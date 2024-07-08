@@ -12,9 +12,9 @@ export class User extends BaseEntity{
 
    @Column()
    @Field()
-   full_name : string;
+   name : string;
 
-   @Column()
+   @Column({default:0})
    @Field()
    gender : number;
 
@@ -22,11 +22,11 @@ export class User extends BaseEntity{
    @Field()
    email : string;
 
-   @Column()
+   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
    @Field()
-   birth_day : Date;
+   birth : Date;
 
-   @Column()
+   @Column({default:null})
    @Field()
    phone : string;
 
@@ -34,15 +34,15 @@ export class User extends BaseEntity{
    @Field()
    password : string;
 
-   @Column()
+   @Column({default:null})
    @Field()
    note : string;
 
-   @Column()
+   @Column({default : 1})
    @Field()
    presenter_id:number;
 
-   @Column()
+   @Column({default : false})
    @Field()
    active:boolean;
 

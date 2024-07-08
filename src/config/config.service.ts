@@ -4,13 +4,11 @@ import { IConfigOpption } from "./interfaces/config-opptions.interface";
 import path from "path";
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import { IEnvConfig } from "./interfaces/env-config.interface";
 
 @Injectable()
 export class ConfigService{
-    private readonly envConfig : IEnvConfig;
-
-    get(key: string): string {
-        return this.envConfig[key];
-      }
+  private readonly config = { };
+  get(key: string) {
+    return this.config[key];
+  }
 }

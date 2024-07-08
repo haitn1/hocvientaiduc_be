@@ -24,9 +24,9 @@ __decorate([
     (0, typeorm_1.Column)(),
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], User.prototype, "full_name", void 0);
+], User.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: 0 }),
     (0, graphql_1.Field)(),
     __metadata("design:type", Number)
 ], User.prototype, "gender", void 0);
@@ -36,12 +36,12 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
     (0, graphql_1.Field)(),
     __metadata("design:type", Date)
-], User.prototype, "birth_day", void 0);
+], User.prototype, "birth", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: null }),
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], User.prototype, "phone", void 0);
@@ -51,17 +51,17 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: null }),
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], User.prototype, "note", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: 1 }),
     (0, graphql_1.Field)(),
     __metadata("design:type", Number)
 ], User.prototype, "presenter_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: false }),
     (0, graphql_1.Field)(),
     __metadata("design:type", Boolean)
 ], User.prototype, "active", void 0);

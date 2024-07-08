@@ -7,10 +7,10 @@ type Query {
 
 type User {
   user_id: Int;
-  full_name : String!;
+  name : String!;
   gender : Int;
   email : String!;
-  birth_day : Date!;
+  birth : Date!;
   phone : String!;
   password : String!;
   note : String!;

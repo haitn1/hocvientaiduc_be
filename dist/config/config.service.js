@@ -9,8 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConfigService = void 0;
 const common_1 = require("@nestjs/common");
 let ConfigService = class ConfigService {
+    constructor() {
+        this.config = {};
+    }
     get(key) {
-        return this.envConfig[key];
+        return this.config[key];
     }
 };
 exports.ConfigService = ConfigService;

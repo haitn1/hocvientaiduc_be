@@ -14,13 +14,14 @@ const item_service_1 = require("./item.service");
 const item_entity_1 = require("./item.entity");
 const date_scalar_1 = require("../common/scalars/date.scalar");
 const item_repository_1 = require("./item.repository");
+const item_input_dto_1 = require("./dto/item-input.dto");
 let ItemModule = class ItemModule {
 };
 exports.ItemModule = ItemModule;
 exports.ItemModule = ItemModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([item_entity_1.Item, item_repository_1.ItemRepository])],
-        providers: [item_resolver_1.ItemResolver, item_service_1.ItemService, date_scalar_1.DateScalar,],
+        providers: [item_resolver_1.ItemResolver, item_service_1.ItemService, date_scalar_1.DateScalar, item_input_dto_1.ItemInput],
         exports: [item_service_1.ItemService],
     })
 ], ItemModule);

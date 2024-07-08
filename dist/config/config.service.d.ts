@@ -1,4 +1,4 @@
 export declare class ConfigService {
-    private readonly envConfig;
-    get(key: string): string;
+    private readonly config;
+    get(key: string): any;
 }

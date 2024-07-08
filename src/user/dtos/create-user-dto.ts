@@ -4,7 +4,7 @@ import {IUser} from '../interfaces/user.interface';
 export class UserCreaterDto implements IUser{
     
     @IsString()
-    full_name : string;
+    name : string;
  
     @IsString()
     gender : number;
@@ -13,7 +13,7 @@ export class UserCreaterDto implements IUser{
     email : string;
  
     @IsDate()
-    birth_day : Date;
+    birth : Date;
  
     @IsString()
     phone : string;

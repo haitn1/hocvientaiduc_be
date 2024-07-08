@@ -13,10 +13,44 @@ exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("../user/user.service");
 const jwt_1 = require("@nestjs/jwt");
+const bcrypt = require("bcrypt");
 let AuthService = class AuthService {
-    constructor(usersService, jwtService) {
-        this.usersService = usersService;
+    constructor(userService, jwtService) {
+        this.userService = userService;
         this.jwtService = jwtService;
+    }
+    async signIn(signupData) {
+        const { name, email, password } = signupData;
+        const user = await this.userService.findOneByEmail(email);
+        if (user) {
+            throw new common_1.UnauthorizedException();
+        }
+        const hashPass = await bcrypt.hash(password, 10);
+        console.log(`signIn : hash pass [${hashPass}]`);
+        const u = await this.userService.createBySignIn(name, email, hashPass);
+        return {
+            access_token: await this.generateUserToken(u),
+            message: 'Success'
+        };
+    }
+    async login(login) {
+        const { email, password } = login;
+        const user = await this.userService.findOneByEmail(email);
+        if (user === null) {
+            throw new common_1.UnauthorizedException();
+        }
+        const passMatch = await bcrypt.compare(password, user.password);
+        if (!passMatch) {
+            throw new common_1.UnauthorizedException('wrong credentials');
+        }
+        return {
+            access_token: await this.generateUserToken(user),
+            message: 'Success'
+        };
+    }
+    async generateUserToken(user) {
+        const access_token = this.jwtService.sign({ user_id: user.user_id }, { expiresIn: '1h' });
+        return access_token;
     }
 };
 exports.AuthService = AuthService;

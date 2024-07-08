@@ -23,6 +23,6 @@ __decorate([
     __metadata("design:type", Number)
 ], ItemInput.prototype, "user_id", void 0);
 exports.ItemInput = ItemInput = __decorate([
-    (0, type_graphql_1.InputType)()
+    (0, type_graphql_1.InputType)('ItemInput')
 ], ItemInput);
 //# sourceMappingURL=item-input.dto.js.map

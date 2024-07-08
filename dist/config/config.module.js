@@ -9,13 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConfigModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_service_1 = require("./config.service");
+const jwt_1 = require("@nestjs/jwt");
 let ConfigModule = class ConfigModule {
-    static forRoot({}) {
-    }
 };
 exports.ConfigModule = ConfigModule;
 exports.ConfigModule = ConfigModule = __decorate([
+    (0, common_1.Global)(),
     (0, common_1.Module)({
+        imports: [jwt_1.JwtModule],
         providers: [config_service_1.ConfigService],
         exports: [config_service_1.ConfigService],
     })

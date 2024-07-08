@@ -34,14 +34,25 @@ let UserService = class UserService {
     async findOneById(user_id) {
         return this.userRepo.findOneBy({ user_id: user_id });
     }
+    async findOneByEmail(email) {
+        console.log(`UserService- findOneByEmail email[${email}]`);
+        return await this.userRepo.findOneBy({ email: email });
+    }
+    async createBySignIn(name, email, password) {
+        const u = new user_entity_1.User();
+        u.name = name;
+        u.email = email;
+        u.password = password;
+        return await this.userRepo.save(u);
+    }
     async create(user) {
         const u = new user_entity_1.User();
-        u.full_name = user.full_name;
+        u.name = user.name;
         u.email = user.email;
         u.password = user.password;
         u.phone = user.phone;
         u.gender = user.gender;
-        u.birth_day = user.birth_day;
+        u.birth = user.birth;
         u.note = user.note;
         u.presenter_id = user.presenter_id;
         u.create_at = new Date();

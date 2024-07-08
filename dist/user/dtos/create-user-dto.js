@@ -17,7 +17,7 @@ exports.UserCreaterDto = UserCreaterDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], UserCreaterDto.prototype, "full_name", void 0);
+], UserCreaterDto.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", Number)
@@ -29,7 +29,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)
-], UserCreaterDto.prototype, "birth_day", void 0);
+], UserCreaterDto.prototype, "birth", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)

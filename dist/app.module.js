@@ -17,12 +17,35 @@ const product_module_1 = require("./product/product.module");
 const apollo_1 = require("@nestjs/apollo");
 const dist_1 = require("@nestjs/graphql/dist");
 const item_module_1 = require("./item/item.module");
+const auth_module_1 = require("./auth/auth.module");
+const jwt_1 = require("@nestjs/jwt");
+const config_service_1 = require("./config/config.service");
+const config_module_1 = require("./config/config.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot({
+        imports: [
+            auth_module_1.AuthModule,
+            user_module_1.UserModule,
+            presenter_module_1.PresenterModule,
+            product_module_1.ProductModule,
+            dist_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                typePaths: ['./**/*.graphql'],
+                installSubscriptionHandlers: true,
+            }),
+            item_module_1.ItemModule,
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_module_1.ConfigModule],
+                useFactory: async (config) => ({
+                    secret: 'secret_123456',
+                }),
+                global: true,
+                inject: [config_service_1.ConfigService]
+            }),
+            typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
                 host: 'localhost',
                 port: 3306,
@@ -32,15 +55,8 @@ exports.AppModule = AppModule = __decorate([
                 entities: [],
                 synchronize: true,
                 autoLoadEntities: true,
-            }), user_module_1.UserModule, presenter_module_1.PresenterModule, product_module_1.ProductModule,
-            dist_1.GraphQLModule.forRoot({
-                driver: apollo_1.ApolloDriver,
-                typePaths: ['./**/*.graphql'],
-                subscriptions: {
-                    'graphql-ws': true
-                },
             }),
-            item_module_1.ItemModule,],
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]
     })

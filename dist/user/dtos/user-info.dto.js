@@ -4,11 +4,11 @@ exports.UserInfoResponseDto = void 0;
 class UserInfoResponseDto {
     constructor(user) {
         this.user_id = user.user_id;
-        this.full_name = user.full_name;
+        this.name = user.name;
         this.email = user.email;
         this.gender = user.gender;
         this.phone = user.phone;
-        this.birth_day = user.birth_day;
+        this.birth = user.birth;
         this.note = user.note;
     }
 }

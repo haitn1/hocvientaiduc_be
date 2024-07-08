@@ -50,7 +50,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "user", null);
 __decorate([
-    (0, graphql_1.Mutation)(returns => user_entity_1.User),
+    (0, graphql_1.Mutation)(() => user_entity_1.User),
     __param(0, (0, graphql_1.Args)({ name: 'user_id', type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

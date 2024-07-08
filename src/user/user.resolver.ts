@@ -5,6 +5,7 @@ import { UsersGuard } from './user.guard';
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { Item } from 'src/item/item.entity';
+import { ItemInput } from 'src/item/dto/item-input.dto';
 
 @Resolver(of => User)
 export class UserResolver {
@@ -32,5 +33,5 @@ export class UserResolver {
       return this.userService.itemsAdded(user_id,name);
    
     }
- 
+
 }
