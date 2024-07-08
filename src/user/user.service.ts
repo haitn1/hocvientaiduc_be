@@ -47,10 +47,10 @@ export class UserService {
         constructor(
           // Khai báo Repository để kết nối db
           @InjectRepository(User)
-          private readonly itemService: ItemService,
+         // private readonly itemService: ItemService,
           public readonly userRepo: UserRepository,
         ) {
-            this.userRepo.itemService = itemService;
+           // this.userRepo.itemService = itemService;
         }
 
        
@@ -97,7 +97,7 @@ export class UserService {
       async remove(user_id: number): Promise<void> {
         await this.userRepo.delete(user_id);
       }
-
+/*
       async itemsAdded(user_id: number, name:string ): Promise<Item> {
         const item = new Item();
         item.name = name;
@@ -105,7 +105,7 @@ export class UserService {
         return this.itemService.create( item);
       }
       
-    
+    */
       
 
 }

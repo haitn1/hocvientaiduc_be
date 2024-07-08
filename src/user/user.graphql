@@ -8,6 +8,7 @@ type User {
     password : String
     note : String
     presenter_id:Int
+    active: Boolean
     create_at : Date
     update_at : Date
 }
@@ -32,6 +33,3 @@ type Mutation {
   activeByUserId(user_id: Int!): User
 }
 
-type Subscription {
-  itemsAdded(user_id:Int,name: String): Item!
-}

@@ -25,12 +25,12 @@ export class UserResolver {
     async activeByUserId(@Args({ name: 'user_id', type: () => Int }) user_id: number) {
       return this.userService.activeByUserId( user_id );
     }
-
+/*
     @Subscription(() => Item)
     async itemsAdded(@Args('user_id', { type: () => Int }) user_id: number,
     @Args('name', { type: () => String }) name: string) {
       return this.userService.itemsAdded(user_id,name);
    
     }
- 
+ */
 }

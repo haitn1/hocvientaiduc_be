@@ -16,7 +16,6 @@ exports.UserResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const user_service_1 = require("./user.service");
 const user_entity_1 = require("./entities/user.entity");
-const item_entity_1 = require("../item/item.entity");
 let UserResolver = class UserResolver {
     constructor(userService) {
         this.userService = userService;
@@ -29,9 +28,6 @@ let UserResolver = class UserResolver {
     }
     async activeByUserId(user_id) {
         return this.userService.activeByUserId(user_id);
-    }
-    async itemsAdded(user_id, name) {
-        return this.userService.itemsAdded(user_id, name);
     }
 };
 exports.UserResolver = UserResolver;
@@ -56,14 +52,6 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "activeByUserId", null);
-__decorate([
-    (0, graphql_1.Subscription)(() => item_entity_1.Item),
-    __param(0, (0, graphql_1.Args)('user_id', { type: () => graphql_1.Int })),
-    __param(1, (0, graphql_1.Args)('name', { type: () => String })),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, String]),
-    __metadata("design:returntype", Promise)
-], UserResolver.prototype, "itemsAdded", null);
 exports.UserResolver = UserResolver = __decorate([
     (0, graphql_1.Resolver)(of => user_entity_1.User),
     __metadata("design:paramtypes", [user_service_1.UserService])
