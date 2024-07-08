@@ -1,5 +1,5 @@
 
-import {  Injectable} from "@nestjs/common";
+import {  Injectable, OnModuleInit} from "@nestjs/common";
 
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -7,8 +7,14 @@ import { UserCreaterDto } from "./dtos/create-user-dto";
 import { DataSource, Repository } from "typeorm";
 import { umask } from "process";
 import { User } from "./entities/user.entity";
+import { Item } from "src/item/item.entity";
+import { ItemService } from "src/item/item.service";
+import { ModuleRef } from "@nestjs/core";
+import { UserRepository } from "./user.repository";
+
 @Injectable() 
 export class UserService {
+  
     /*
     constructor(private dataSource: DataSource) {}
     
@@ -41,18 +47,23 @@ export class UserService {
         constructor(
           // Khai báo Repository để kết nối db
           @InjectRepository(User)
-          private itemRepo: Repository<User>,
-        ) {}
+          private readonly itemService: ItemService,
+          public readonly userRepo: UserRepository,
+        ) {
+            this.userRepo.itemService = itemService;
+        }
+
+       
 
         async findAll(): Promise<User[]> {
-          return await this.itemRepo.find();
+          return await this.userRepo.find();
         }
         async findOne(): Promise<User> {
-          return this.itemRepo.findOne({});
+          return this.userRepo.findOne({});
         }
   
         async findOneById(user_id: number): Promise<User> {
-          return this.itemRepo.findOneBy({ user_id: user_id });
+          return this.userRepo.findOneBy({ user_id: user_id });
         }
   
         async  create(user: UserCreaterDto):Promise<User> {
@@ -68,24 +79,33 @@ export class UserService {
           u.presenter_id = user.presenter_id;
           u.create_at =  new Date();
           u.update_at =  new Date();
-           const us =  await this.itemRepo.save(u);
+           const us =  await this.userRepo.save(u);
            await console.log(`UserService - Insert new User ${JSON.stringify(us)}`);
           return us;
         }
 
       user() {
-        return  this.itemRepo.findOne({});
+        return  this.userRepo.findOne({});
       }
       
       async activeByUserId(user_id: number): Promise<User> {
-        const user = await this.itemRepo.findOneBy({ user_id: user_id });
+        const user = await this.userRepo.findOneBy({ user_id: user_id });
         (await user).active = true;
-        return await this.itemRepo.save(user);
+        return await this.userRepo.save(user);
       }
       
-    /*
-      async remove(user_id: string): Promise<void> {
-        await this.usersRepository.delete(user_id);
+      async remove(user_id: number): Promise<void> {
+        await this.userRepo.delete(user_id);
       }
-*/
+
+      async itemsAdded(user_id: number, name:string ): Promise<Item> {
+        const item = new Item();
+        item.name = name;
+        item.user_id = user_id;
+        return this.itemService.create( item);
+      }
+      
+    
+      
+
 }

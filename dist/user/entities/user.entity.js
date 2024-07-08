@@ -61,6 +61,11 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "presenter_id", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
+    __metadata("design:type", Boolean)
+], User.prototype, "active", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
     (0, graphql_1.Field)(),
     __metadata("design:type", Date)

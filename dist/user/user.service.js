@@ -15,20 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const item_entity_1 = require("../item/item.entity");
+const item_service_1 = require("../item/item.service");
+const user_repository_1 = require("./user.repository");
 let UserService = class UserService {
-    constructor(itemRepo) {
-        this.itemRepo = itemRepo;
+    constructor(itemService, userRepo) {
+        this.itemService = itemService;
+        this.userRepo = userRepo;
+        this.userRepo.itemService = itemService;
     }
     async findAll() {
-        return await this.itemRepo.find();
+        return await this.userRepo.find();
     }
     async findOne() {
-        return this.itemRepo.findOne({});
+        return this.userRepo.findOne({});
     }
     async findOneById(user_id) {
-        return this.itemRepo.findOneBy({ user_id: user_id });
+        return this.userRepo.findOneBy({ user_id: user_id });
     }
     async create(user) {
         const u = new user_entity_1.User();
@@ -42,18 +46,33 @@ let UserService = class UserService {
         u.presenter_id = user.presenter_id;
         u.create_at = new Date();
         u.update_at = new Date();
-        const us = await this.itemRepo.save(u);
+        const us = await this.userRepo.save(u);
         await console.log(`UserService - Insert new User ${JSON.stringify(us)}`);
         return us;
     }
     user() {
-        return this.itemRepo.findOne({});
+        return this.userRepo.findOne({});
+    }
+    async activeByUserId(user_id) {
+        const user = await this.userRepo.findOneBy({ user_id: user_id });
+        (await user).active = true;
+        return await this.userRepo.save(user);
+    }
+    async remove(user_id) {
+        await this.userRepo.delete(user_id);
+    }
+    async itemsAdded(user_id, name) {
+        const item = new item_entity_1.Item();
+        item.name = name;
+        item.user_id = user_id;
+        return this.itemService.create(item);
     }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [item_service_1.ItemService,
+        user_repository_1.UserRepository])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

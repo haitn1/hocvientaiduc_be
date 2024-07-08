@@ -16,7 +16,11 @@ import {
   
     @Column()
     @Field()
-    name: string;
+    name: String;
+
+    @Column()
+    @Field()
+    user_id: number;
   
     @UpdateDateColumn()
     @Field()

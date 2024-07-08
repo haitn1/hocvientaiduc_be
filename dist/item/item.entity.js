@@ -26,6 +26,11 @@ __decorate([
     __metadata("design:type", String)
 ], Item.prototype, "name", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Item.prototype, "user_id", void 0);
+__decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     (0, type_graphql_1.Field)(),
     __metadata("design:type", Date)

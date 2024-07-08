@@ -30,7 +30,9 @@ import { DirectiveLocation, GraphQLDirective } from 'graphql';
   GraphQLModule.forRoot<ApolloDriverConfig>({
     driver: ApolloDriver,
     typePaths: ['./**/*.graphql'],
- 
+    subscriptions: {
+      'graphql-ws': true
+    },
   }),
   ItemModule,
 ],

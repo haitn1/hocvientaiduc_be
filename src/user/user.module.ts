@@ -6,12 +6,15 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserSubscriber } from "./entities/user.subscribers";
 import { UserResolver } from './user.resolver';
 import { DateScalar } from "src/common/scalars/date.scalar";
+import { ItemService } from "src/item/item.service";
+import { UserRepository } from "./user.repository";
 
 
 @Module({
-imports:[TypeOrmModule.forFeature([User])],
+imports:[TypeOrmModule.forFeature([User,UserRepository])],
 controllers: [UserController],
-providers:[UserService ,UserSubscriber, UserResolver,DateScalar]
+providers:[UserService ,UserSubscriber, UserResolver,DateScalar],
+exports :[UserService]
 })
 export class UserModule{
 }

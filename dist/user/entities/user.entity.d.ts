@@ -9,6 +9,7 @@ export declare class User extends BaseEntity {
     password: string;
     note: string;
     presenter_id: number;
+    active: boolean;
     create_at: Date;
     update_at: Date;
 }

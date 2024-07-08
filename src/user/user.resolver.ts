@@ -1,9 +1,10 @@
-import { Resolver,Query, Args, Int, Mutation } from '@nestjs/graphql';
+import { Resolver,Query, Args, Int, Mutation, Subscription } from '@nestjs/graphql';
 
 import { UserService } from './user.service';
 import { UsersGuard } from './user.guard';
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { User } from './entities/user.entity';
+import { Item } from 'src/item/item.entity';
 
 @Resolver(of => User)
 export class UserResolver {
@@ -24,4 +25,12 @@ export class UserResolver {
     async activeByUserId(@Args({ name: 'user_id', type: () => Int }) user_id: number) {
       return this.userService.activeByUserId( user_id );
     }
+
+    @Subscription(() => Item)
+    async itemsAdded(@Args('user_id', { type: () => Int }) user_id: number,
+    @Args('name', { type: () => String }) name: string) {
+      return this.userService.itemsAdded(user_id,name);
+   
+    }
+ 
 }
