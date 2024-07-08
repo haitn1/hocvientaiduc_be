@@ -8,10 +8,11 @@ import { UserResolver } from './user.resolver';
 import { DateScalar } from "src/common/scalars/date.scalar";
 import { ItemService } from "src/item/item.service";
 import { UserRepository } from "./user.repository";
+import { ItemModule } from "src/item/item.module";
 
 
 @Module({
-imports:[TypeOrmModule.forFeature([User,UserRepository])],
+imports:[TypeOrmModule.forFeature([User,UserRepository]),ItemModule],
 controllers: [UserController],
 providers:[UserService ,UserSubscriber, UserResolver,DateScalar],
 exports :[UserService]

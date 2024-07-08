@@ -21,8 +21,14 @@ let ItemService = class ItemService {
     constructor(itemRepo) {
         this.itemRepo = itemRepo;
     }
+    async createByItemInput(item) {
+        const i = new item_entity_1.Item();
+        i.name = item.name;
+        i.user_id = item.user_id;
+        return await this.itemRepo.save(i);
+    }
     async create(item) {
-        return this.itemRepo.save(item);
+        return await this.itemRepo.save(item);
     }
     async findAll() {
         return this.itemRepo.find();

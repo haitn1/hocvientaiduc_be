@@ -11,6 +11,7 @@ import { Item } from "src/item/item.entity";
 import { ItemService } from "src/item/item.service";
 import { ModuleRef } from "@nestjs/core";
 import { UserRepository } from "./user.repository";
+import { ItemInput } from "src/item/dto/item-input.dto";
 
 @Injectable() 
 export class UserService {
@@ -47,10 +48,11 @@ export class UserService {
         constructor(
           // Khai báo Repository để kết nối db
           @InjectRepository(User)
-         // private readonly itemService: ItemService,
           public readonly userRepo: UserRepository,
+          private readonly itemService: ItemService,
+          
         ) {
-           // this.userRepo.itemService = itemService;
+            this.userRepo.itemService = itemService;
         }
 
        
@@ -97,15 +99,15 @@ export class UserService {
       async remove(user_id: number): Promise<void> {
         await this.userRepo.delete(user_id);
       }
-/*
+
       async itemsAdded(user_id: number, name:string ): Promise<Item> {
-        const item = new Item();
+        const item = new ItemInput();
         item.name = name;
         item.user_id = user_id;
-        return this.itemService.create( item);
+        return this.itemService.createByItemInput( item);
       }
       
-    */
+    
       
 
 }
