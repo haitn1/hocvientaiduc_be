@@ -1,4 +1,4 @@
-import { Resolver,Query, Args, Int } from '@nestjs/graphql';
+import { Resolver,Query, Args, Int, Mutation } from '@nestjs/graphql';
 
 import { UserService } from './user.service';
 import { UsersGuard } from './user.guard';
@@ -16,8 +16,12 @@ export class UserResolver {
     }
 
     @Query(() => User)
-  async user(@Args('user_id', { type: () => Int }) user_id: number) {
-  return this.userService.findOneById(user_id);
-}
+    async user(@Args('user_id', { type: () => Int }) user_id: number) {
+      return this.userService.findOneById(user_id);
+    }
   
+    @Mutation(returns => User)
+    async activeByUserId(@Args({ name: 'user_id', type: () => Int }) user_id: number) {
+      return this.userService.activeByUserId( user_id );
+    }
 }

@@ -42,6 +42,10 @@ export class User extends BaseEntity{
    @Field()
    presenter_id:number;
 
+   @Column()
+   @Field()
+   active:boolean;
+
    @CreateDateColumn()
    @Field()
    create_at : Date;

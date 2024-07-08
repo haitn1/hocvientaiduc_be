@@ -19,5 +19,7 @@ type Query {
   users : [User]
 }
 
-
+type Mutation {
+  activeByUserId(user_id: Int!): User
+}
 

@@ -77,6 +77,11 @@ export class UserService {
         return  this.itemRepo.findOne({});
       }
       
+      async activeByUserId(user_id: number): Promise<User> {
+        const user = await this.itemRepo.findOneBy({ user_id: user_id });
+        (await user).active = true;
+        return await this.itemRepo.save(user);
+      }
       
     /*
       async remove(user_id: string): Promise<void> {
