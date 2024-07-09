@@ -1,19 +1,13 @@
-import { Controller, Res, Get, Redirect, Param, ParseIntPipe, Post, Req, Body, Query, Put , Delete, HttpCode, HttpStatus, HttpException, UseGuards, UseInterceptors, DefaultValuePipe} from '@nestjs/common';
-import IUserRequest from './interfaces/user-request.interface';
-import { UserInfoResponseDto } from './dtos/user-info.dto';
-import { Request, query } from 'express';
+import { Controller, Get, Param, ParseIntPipe, Post, Body, Delete, HttpStatus, DefaultValuePipe} from '@nestjs/common';
 import { UserCreaterDto } from './dtos/create-user-dto';
-import { Response } from 'express';
 import { UserService } from './user.service';
-import { IUser } from 'src/user/interfaces/user.interface';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { User } from './entities/user.entity';
-import { LoggerInterceptor } from 'src/core/interceptors/logging.interceptor';
+import { Public } from 'src/auth/decorators/public.decorator';
 @Controller('users')
 //@UseGuards(AuthGuard)
 //@UseInterceptors(LoggerInterceptor)
 export class UserController {
     constructor(private userService : UserService){}
+    @Public()
     @Get()
     async findAll() {
         console.log('UserController findAll .....');

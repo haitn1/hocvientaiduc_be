@@ -2,12 +2,13 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "src/user/user.service";
 import { JwtService } from '@nestjs/jwt';
 import { SignupDto } from "./dtos/signup.dto";
-import { User } from "src/user/entities/user.entity";
+import { UserEntity } from "src/user/entities/user.entity";
 import { LoginDto } from "./dtos/login.dto";
 import { Repository } from "typeorm";
 import * as bcrypt from 'bcrypt';
 import { promisify } from "util";
 import { Console } from "console";
+import { uuid } from 'uuidv4';
 @Injectable()
 export class AuthService {
  constructor(
@@ -15,7 +16,7 @@ export class AuthService {
   private jwtService :  JwtService,
  ){}
 
-  async signIn(signupData : SignupDto) {
+  async signIn(signupData : SignupDto): Promise<{ access_token: string, refresh_token : string }> {
     const {name, email, password} = signupData;
     const user = await this.userService.findOneByEmail(email);
     if(user){
@@ -26,14 +27,17 @@ export class AuthService {
    
     const u = await this.userService.createBySignIn(name,email,hashPass);
     //const payload = { name: u.name, sub: u.user_id };
-    return {
-      access_token: await this.generateUserToken(u),
-      message: 'Success' 
-    //access_token : `dsfkjhdsk fhkrhg djgkhkgldr`,
-    };
+    const refresh=  uuid() ;
+
+    return  {
+     access_token :await this.generateUserToken(u),
+     refresh_token : refresh,
+     
+    }
+
   }
 
-  async login(login : LoginDto) {
+  async login(login : LoginDto): Promise<{ access_token: string, refresh_token : string }> {
     const { email, password} = login;
     const user = await this.userService.findOneByEmail(email);
     if (user === null) {
@@ -43,17 +47,23 @@ export class AuthService {
    if(!passMatch){
       throw new UnauthorizedException('wrong credentials');
    }
-    //const payload = { username: user.name, sub: user.user_id };
-    return {
-      access_token: await this.generateUserToken(user),
-     // access_token : `dsfkjhdsk fhkrhg djgkhkgldr`,
-      message: 'Success' 
-    };
+   const refresh=  uuid() ;
+
+    return  {
+     access_token :await this.generateUserToken(user),
+     refresh_token : refresh,
+     
+    }
+
+  
   }
 
-  async generateUserToken(user: User){
-      const access_token = this.jwtService.sign({user_id : user.user_id},{expiresIn:'1h'});
+  async generateUserToken(user: UserEntity){
+
+      const access_token = this.jwtService.signAsync({user_id : user.user_id},{expiresIn:'1h'});
+
       return access_token;
+      
   }
     
 }

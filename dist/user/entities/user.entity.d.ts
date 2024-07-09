@@ -1,5 +1,5 @@
 import { BaseEntity } from "typeorm";
-export declare class User extends BaseEntity {
+export declare class UserEntity extends BaseEntity {
     user_id: number;
     name: string;
     gender: number;
@@ -10,6 +10,6 @@ export declare class User extends BaseEntity {
     note: string;
     presenter_id: number;
     active: boolean;
-    create_at: Date;
-    update_at: Date;
+    created: Date;
+    updated: Date;
 }

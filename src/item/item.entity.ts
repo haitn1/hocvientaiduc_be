@@ -7,7 +7,7 @@ import {
     CreateDateColumn,
   } from 'typeorm';
   
-  @Entity('items')
+  @Entity('items_tb')
   @ObjectType()
   export class Item {
     @PrimaryGeneratedColumn('uuid')

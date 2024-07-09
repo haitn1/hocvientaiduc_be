@@ -16,6 +16,7 @@ exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const item_entity_1 = require("../item/item.entity");
 const item_service_1 = require("../item/item.service");
 const user_repository_1 = require("./user.repository");
 const item_input_dto_1 = require("../item/dto/item-input.dto");
@@ -24,6 +25,13 @@ let UserService = class UserService {
         this.userRepo = userRepo;
         this.itemService = itemService;
         this.userRepo.itemService = itemService;
+    }
+    async createUserAndProfile(userData, profileData, manager) {
+        const user = await manager.create(user_entity_1.UserEntity, userData);
+        const profile = await manager.create(item_entity_1.Item, profileData);
+        await manager.save(user);
+        await manager.save(profile);
+        return user;
     }
     async findAll() {
         return await this.userRepo.find();
@@ -39,14 +47,14 @@ let UserService = class UserService {
         return await this.userRepo.findOneBy({ email: email });
     }
     async createBySignIn(name, email, password) {
-        const u = new user_entity_1.User();
+        const u = new user_entity_1.UserEntity();
         u.name = name;
         u.email = email;
         u.password = password;
         return await this.userRepo.save(u);
     }
     async create(user) {
-        const u = new user_entity_1.User();
+        const u = new user_entity_1.UserEntity();
         u.name = user.name;
         u.email = user.email;
         u.password = user.password;
@@ -55,8 +63,8 @@ let UserService = class UserService {
         u.birth = user.birth;
         u.note = user.note;
         u.presenter_id = user.presenter_id;
-        u.create_at = new Date();
-        u.update_at = new Date();
+        u.created = new Date();
+        u.updated = new Date();
         const us = await this.userRepo.save(u);
         await console.log(`UserService - Insert new User ${JSON.stringify(us)}`);
         return us;
@@ -82,7 +90,7 @@ let UserService = class UserService {
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
     __metadata("design:paramtypes", [user_repository_1.UserRepository,
         item_service_1.ItemService])
 ], UserService);

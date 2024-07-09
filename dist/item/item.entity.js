@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Item.prototype, "created", void 0);
 exports.Item = Item = __decorate([
-    (0, typeorm_1.Entity)('items'),
+    (0, typeorm_1.Entity)('items_tb'),
     (0, type_graphql_1.ObjectType)()
 ], Item);
 //# sourceMappingURL=item.entity.js.map

@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { UserController } from "./user.controller";
 import { UserService } from "./user.service";
-import { User } from "./entities/user.entity";
+import { UserEntity } from "./entities/user.entity";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserSubscriber } from "./entities/user.subscribers";
 import { UserResolver } from './user.resolver';
@@ -12,7 +12,7 @@ import { ItemModule } from "src/item/item.module";
 
 
 @Module({
-imports:[TypeOrmModule.forFeature([User,UserRepository]),ItemModule],
+imports:[TypeOrmModule.forFeature([UserEntity,UserRepository]),ItemModule],
 controllers: [UserController],
 providers:[UserService ,UserSubscriber, UserResolver,DateScalar],
 exports :[UserService]

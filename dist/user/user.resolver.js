@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const user_service_1 = require("./user.service");
-const user_entity_1 = require("./entities/user.entity");
 const item_entity_1 = require("../item/item.entity");
+const user_schema_1 = require("./shemas/user.schema");
 let UserResolver = class UserResolver {
     constructor(userService) {
         this.userService = userService;
@@ -36,21 +36,21 @@ let UserResolver = class UserResolver {
 };
 exports.UserResolver = UserResolver;
 __decorate([
-    (0, graphql_1.Query)(() => user_entity_1.User),
-    (0, graphql_1.Query)(() => [user_entity_1.User]),
+    (0, graphql_1.Query)(() => user_schema_1.User),
+    (0, graphql_1.Query)(() => [user_schema_1.User]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "users", null);
 __decorate([
-    (0, graphql_1.Query)(() => user_entity_1.User),
+    (0, graphql_1.Query)(() => user_schema_1.User),
     __param(0, (0, graphql_1.Args)('user_id', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "user", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => user_entity_1.User),
+    (0, graphql_1.Mutation)(() => user_schema_1.User),
     __param(0, (0, graphql_1.Args)({ name: 'user_id', type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -65,7 +65,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "itemsAdded", null);
 exports.UserResolver = UserResolver = __decorate([
-    (0, graphql_1.Resolver)(of => user_entity_1.User),
+    (0, graphql_1.Resolver)(of => user_schema_1.User),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserResolver);
 //# sourceMappingURL=user.resolver.js.map

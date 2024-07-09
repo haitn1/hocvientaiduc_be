@@ -3,9 +3,10 @@ import { Resolver,Query, Args, Int, Mutation, Subscription } from '@nestjs/graph
 import { UserService } from './user.service';
 import { UsersGuard } from './user.guard';
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
-import { User } from './entities/user.entity';
+
 import { Item } from 'src/item/item.entity';
 import { ItemInput } from 'src/item/dto/item-input.dto';
+import { User } from './shemas/user.schema';
 
 @Resolver(of => User)
 export class UserResolver {
@@ -13,7 +14,7 @@ export class UserResolver {
     @Query(() => User)
 
     @Query(() => [User])
-    async users(): Promise<User[]> {
+    async users(): Promise<any[]> {
       return await this.userService.findAll(); 
     }
 

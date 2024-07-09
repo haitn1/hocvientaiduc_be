@@ -6,7 +6,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { UserCreaterDto } from "./dtos/create-user-dto";
 import { Repository, EntityManager, Transaction } from 'typeorm';
 import { umask } from "process";
-import { User } from "./entities/user.entity";
+import { UserEntity } from "./entities/user.entity";
 import { Item } from "src/item/item.entity";
 import { ItemService } from "src/item/item.service";
 import { ModuleRef } from "@nestjs/core";
@@ -48,7 +48,7 @@ export class UserService {
 */
         constructor(
           // Khai báo Repository để kết nối db
-          @InjectRepository(User)
+          @InjectRepository(UserEntity)
           public readonly userRepo: UserRepository,
           private readonly itemService: ItemService,
           
@@ -57,8 +57,8 @@ export class UserService {
         }
 
       
-    async createUserAndProfile(userData: User, profileData: Item, manager?: EntityManager): Promise<User> {
-        const user = await manager.create(User, userData);
+    async createUserAndProfile(userData: UserEntity, profileData: Item, manager?: EntityManager): Promise<UserEntity> {
+        const user = await manager.create(UserEntity, userData);
         const profile = await manager.create(Item, profileData);
 
         await manager.save(user);
@@ -67,32 +67,32 @@ export class UserService {
         return user;
     }
 
-        async findAll(): Promise<User[]> {
+        async findAll(): Promise<UserEntity[]> {
           return await this.userRepo.find();
         }
-        async findOne(): Promise<User> {
+        async findOne(): Promise<UserEntity> {
           return this.userRepo.findOne({});
         }
   
-        async findOneById(user_id: number): Promise<User> {
+        async findOneById(user_id: number): Promise<UserEntity> {
           return this.userRepo.findOneBy({ user_id: user_id });
         }
   
-        async findOneByEmail(email: string): Promise<User> {
+        async findOneByEmail(email: string): Promise<UserEntity> {
           console.log(`UserService- findOneByEmail email[${email}]`);
           return await this.userRepo.findOneBy({ email: email });
         }
-        async  createBySignIn(name: string , email : string , password: string):Promise<User> {
-          const u = new User();
+        async  createBySignIn(name: string , email : string , password: string):Promise<UserEntity> {
+          const u = new UserEntity();
           u.name = name;
           u.email = email;
           u.password = password;
           return await this.userRepo.save(u);
         }
 
-        async  create(user: UserCreaterDto):Promise<User> {
+        async  create(user: UserCreaterDto):Promise<UserEntity> {
           
-          const u = new User();
+          const u = new UserEntity();
           u.name = user.name;
           u.email = user.email;
           u.password = user.password;
@@ -101,8 +101,8 @@ export class UserService {
           u.birth = user.birth;
           u.note = user.note;
           u.presenter_id = user.presenter_id;
-          u.create_at =  new Date();
-          u.update_at =  new Date();
+          u.created =  new Date();
+          u.updated =  new Date();
            const us =  await this.userRepo.save(u);
            await console.log(`UserService - Insert new User ${JSON.stringify(us)}`);
           return us;
@@ -112,7 +112,7 @@ export class UserService {
         return  this.userRepo.findOne({});
       }
       
-      async activeByUserId(user_id: number): Promise<User> {
+      async activeByUserId(user_id: number): Promise<UserEntity> {
         const user = await this.userRepo.findOneBy({ user_id: user_id });
         (await user).active = true;
         return await this.userRepo.save(user);

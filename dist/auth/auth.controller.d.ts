@@ -6,10 +6,11 @@ export declare class AuthController {
     constructor(authService: AuthService);
     signUp(signupData: SignupDto): Promise<{
         access_token: string;
-        message: string;
+        refresh_token: string;
     }>;
     login(data: LoginDto): Promise<{
         access_token: string;
-        message: string;
+        refresh_token: string;
     }>;
+    getProfile(req: any): any;
 }

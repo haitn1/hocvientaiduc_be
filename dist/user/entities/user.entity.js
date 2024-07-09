@@ -9,74 +9,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
-const graphql_1 = require("@nestjs/graphql");
+exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
-let User = class User extends typeorm_1.BaseEntity {
+let UserEntity = class UserEntity extends typeorm_1.BaseEntity {
 };
-exports.User = User;
+exports.UserEntity = UserEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
-    (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", Number)
-], User.prototype, "user_id", void 0);
+], UserEntity.prototype, "user_id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], UserEntity.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: 0 }),
-    (0, graphql_1.Field)(),
     __metadata("design:type", Number)
-], User.prototype, "gender", void 0);
+], UserEntity.prototype, "gender", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], UserEntity.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
-    (0, graphql_1.Field)(),
     __metadata("design:type", Date)
-], User.prototype, "birth", void 0);
+], UserEntity.prototype, "birth", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: null }),
-    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], User.prototype, "phone", void 0);
+], UserEntity.prototype, "phone", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], UserEntity.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: null }),
-    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], User.prototype, "note", void 0);
+], UserEntity.prototype, "note", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: 1 }),
-    (0, graphql_1.Field)(),
     __metadata("design:type", Number)
-], User.prototype, "presenter_id", void 0);
+], UserEntity.prototype, "presenter_id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: false }),
-    (0, graphql_1.Field)(),
     __metadata("design:type", Boolean)
-], User.prototype, "active", void 0);
+], UserEntity.prototype, "active", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
-    (0, graphql_1.Field)(),
     __metadata("design:type", Date)
-], User.prototype, "create_at", void 0);
+], UserEntity.prototype, "created", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
-    (0, graphql_1.Field)(),
     __metadata("design:type", Date)
-], User.prototype, "update_at", void 0);
-exports.User = User = __decorate([
-    (0, typeorm_1.Entity)('user'),
-    (0, graphql_1.ObjectType)()
-], User);
+], UserEntity.prototype, "updated", void 0);
+exports.UserEntity = UserEntity = __decorate([
+    (0, typeorm_1.Entity)('user_tb')
+], UserEntity);
 //# sourceMappingURL=user.entity.js.map

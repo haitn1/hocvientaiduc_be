@@ -14,6 +14,7 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("../user/user.service");
 const jwt_1 = require("@nestjs/jwt");
 const bcrypt = require("bcrypt");
+const uuidv4_1 = require("uuidv4");
 let AuthService = class AuthService {
     constructor(userService, jwtService) {
         this.userService = userService;
@@ -28,9 +29,10 @@ let AuthService = class AuthService {
         const hashPass = await bcrypt.hash(password, 10);
         console.log(`signIn : hash pass [${hashPass}]`);
         const u = await this.userService.createBySignIn(name, email, hashPass);
+        const refresh = (0, uuidv4_1.uuid)();
         return {
             access_token: await this.generateUserToken(u),
-            message: 'Success'
+            refresh_token: refresh,
         };
     }
     async login(login) {
@@ -43,13 +45,14 @@ let AuthService = class AuthService {
         if (!passMatch) {
             throw new common_1.UnauthorizedException('wrong credentials');
         }
+        const refresh = (0, uuidv4_1.uuid)();
         return {
             access_token: await this.generateUserToken(user),
-            message: 'Success'
+            refresh_token: refresh,
         };
     }
     async generateUserToken(user) {
-        const access_token = this.jwtService.sign({ user_id: user.user_id }, { expiresIn: '1h' });
+        const access_token = this.jwtService.signAsync({ user_id: user.user_id }, { expiresIn: '1h' });
         return access_token;
     }
 };
