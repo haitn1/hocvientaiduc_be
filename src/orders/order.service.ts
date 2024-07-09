@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import {  OrderEntity } from './order.entity';
+import {  OrderEntity } from './entities/order.entity';
 import { OrderRepository } from './order.repository';
 import { OrderInput } from './dto/order-input.dto';
 
@@ -14,11 +14,8 @@ export class OrderService {
   ) {}
 
 
-  async createByOrderInput(Order: OrderInput): Promise< OrderEntity >{
-    const i = new OrderEntity();
-    i.name = Order.name;
-    i.data = Order.data;
-     return await this.orderRepo.save(i);
+  async createByOrderInput(order: OrderInput): Promise< any >{
+     return await this.orderRepo.createByOrderInput(order);
   }
 
   async create(Order: OrderEntity): Promise< OrderEntity >{

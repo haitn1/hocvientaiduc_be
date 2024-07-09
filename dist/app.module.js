@@ -17,6 +17,7 @@ const product_module_1 = require("./product/product.module");
 const apollo_1 = require("@nestjs/apollo");
 const dist_1 = require("@nestjs/graphql/dist");
 const auth_module_1 = require("./auth/auth.module");
+const order_module_1 = require("./orders/order.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,6 +26,7 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             auth_module_1.AuthModule,
             user_module_1.UserModule,
+            order_module_1.OrderModule,
             presenter_module_1.PresenterModule,
             product_module_1.ProductModule,
             dist_1.GraphQLModule.forRoot({

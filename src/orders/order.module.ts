@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { OrderResolver } from './order.resolver';
 import { OrderService } from './order.service';
-import { OrderEntity } from './order.entity';
+import { OrderEntity } from './entities/order.entity';
 import { DateScalar } from 'src/common/scalars/date.scalar';
 import { OrderRepository } from './order.repository';
 import { OrderInput } from './dto/order-input.dto';
@@ -16,5 +16,5 @@ import { OrderInput } from './dto/order-input.dto';
   
 })
 export class OrderModule {
-  
+
 }

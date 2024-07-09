@@ -15,17 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const order_entity_1 = require("./order.entity");
+const order_entity_1 = require("./entities/order.entity");
 const order_repository_1 = require("./order.repository");
 let OrderService = class OrderService {
     constructor(orderRepo) {
         this.orderRepo = orderRepo;
     }
-    async createByOrderInput(Order) {
-        const i = new order_entity_1.OrderEntity();
-        i.name = Order.name;
-        i.data = Order.data;
-        return await this.orderRepo.save(i);
+    async createByOrderInput(order) {
+        return await this.orderRepo.createByOrderInput(order);
     }
     async create(Order) {
         return await this.orderRepo.save(Order);
