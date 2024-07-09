@@ -31,9 +31,6 @@ let UserController = class UserController {
         await console.log(`UserController API create new user [#${JSON.stringify(user)}] `);
         return await this.userService.create(user);
     }
-    async createUserAndProfile(userData, profileData) {
-        return this.userService.createUserAndProfile(userData, profileData);
-    }
     getUserInfo(userId) {
         console.log(`getUserInfo userId[#${userId}]`);
         return `getUserInfo #${userId}`;
@@ -58,14 +55,6 @@ __decorate([
     __metadata("design:paramtypes", [create_user_dto_1.UserCreaterDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "Create", null);
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "createUserAndProfile", null);
 __decorate([
     (0, common_1.Get)(':userId'),
     __param(0, (0, common_1.Param)('userId', new common_1.DefaultValuePipe(0), new common_1.ParseIntPipe({ errorHttpStatusCode: common_1.HttpStatus.NOT_ACCEPTABLE }))),

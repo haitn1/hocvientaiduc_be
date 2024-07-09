@@ -16,11 +16,7 @@ const presenter_module_1 = require("./presenter/presenter.module");
 const product_module_1 = require("./product/product.module");
 const apollo_1 = require("@nestjs/apollo");
 const dist_1 = require("@nestjs/graphql/dist");
-const item_module_1 = require("./item/item.module");
 const auth_module_1 = require("./auth/auth.module");
-const jwt_1 = require("@nestjs/jwt");
-const config_service_1 = require("./config/config.service");
-const config_module_1 = require("./config/config.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -35,15 +31,6 @@ exports.AppModule = AppModule = __decorate([
                 driver: apollo_1.ApolloDriver,
                 typePaths: ['./**/*.graphql'],
                 installSubscriptionHandlers: true,
-            }),
-            item_module_1.ItemModule,
-            jwt_1.JwtModule.registerAsync({
-                imports: [config_module_1.ConfigModule],
-                useFactory: async (config) => ({
-                    secret: 'secret_123456',
-                }),
-                global: true,
-                inject: [config_service_1.ConfigService]
             }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',

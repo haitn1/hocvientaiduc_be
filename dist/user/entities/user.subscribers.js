@@ -8,16 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSubscriber = void 0;
 const typeorm_1 = require("typeorm");
-const user_schema_1 = require("../shemas/user.schema");
+const user_repository_1 = require("../user.repository");
+const typeorm_2 = require("@nestjs/typeorm");
+const user_entity_1 = require("./user.entity");
 let UserSubscriber = class UserSubscriber {
-    constructor(dataSource) {
-        dataSource.subscribers.push(this);
+    constructor(userRepo) {
     }
     listenTo() {
-        return user_schema_1.User;
+        return user_entity_1.UserEntity;
     }
     beforeInsert(event) {
         console.log(`UserSubscriber- BEFORE USER INSERTED: `, event.entity);
@@ -29,6 +33,7 @@ let UserSubscriber = class UserSubscriber {
 exports.UserSubscriber = UserSubscriber;
 exports.UserSubscriber = UserSubscriber = __decorate([
     (0, typeorm_1.EventSubscriber)(),
-    __metadata("design:paramtypes", [typeorm_1.DataSource])
+    __param(0, (0, typeorm_2.InjectRepository)(user_entity_1.UserEntity)),
+    __metadata("design:paramtypes", [user_repository_1.UserRepository])
 ], UserSubscriber);
 //# sourceMappingURL=user.subscribers.js.map

@@ -1,8 +1,10 @@
-import { DataSource, EntitySubscriberInterface, InsertEvent } from 'typeorm';
+import { EntitySubscriberInterface, InsertEvent } from 'typeorm';
 import { User } from '../shemas/user.schema';
+import { UserRepository } from '../user.repository';
+import { UserEntity } from './user.entity';
 export declare class UserSubscriber implements EntitySubscriberInterface<User> {
-    constructor(dataSource: DataSource);
-    listenTo(): typeof User;
-    beforeInsert(event: InsertEvent<User>): void;
-    afterInsert(event: InsertEvent<User>): void | Promise<any>;
+    constructor(userRepo: UserRepository);
+    listenTo(): typeof UserEntity;
+    beforeInsert(event: InsertEvent<any>): void;
+    afterInsert(event: InsertEvent<any>): void | Promise<any>;
 }

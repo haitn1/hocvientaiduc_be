@@ -22,10 +22,6 @@ export class UserController {
        return await this.userService.create(user);
     }
 
-    @Post()
-    async createUserAndProfile(@Body() userData: any, @Body() profileData: any) {
-        return this.userService.createUserAndProfile(userData, profileData);
-    }
     
     @Get(':userId')
     getUserInfo(

@@ -13,14 +13,6 @@ type User {
     update_at : Date
 }
 
-type Item {
-    id: ID!
-    name: String
-    user_id: Int
-    updated: Date
-    created: Date
-}
-
 
 """Date custom scalar type"""
 scalar Date
@@ -33,8 +25,3 @@ type Query {
 type Mutation {
   activeByUserId(user_id: Int!): User
 } 
-
-type Subscription {
-  itemsAdded(user_id:Int,name: String): Item
-
-}
