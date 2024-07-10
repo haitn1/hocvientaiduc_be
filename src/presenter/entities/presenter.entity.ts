@@ -1,12 +1,12 @@
-import { Field } from "@nestjs/graphql";
-import { CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('presenter_tb')
 export class PresenterEntity {
     @PrimaryColumn()
     id : number;
 
-    @Field()
+    @Column()
     name:String;
 
     @CreateDateColumn()

@@ -10,16 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePresenterInput = void 0;
+const graphql_1 = require("@nestjs/graphql");
 const class_validator_1 = require("class-validator");
-class CreatePresenterInput {
-}
+let CreatePresenterInput = class CreatePresenterInput {
+};
 exports.CreatePresenterInput = CreatePresenterInput;
 __decorate([
     (0, class_validator_1.IsNumber)(),
+    (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", Number)
 ], CreatePresenterInput.prototype, "id", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], CreatePresenterInput.prototype, "name", void 0);
+exports.CreatePresenterInput = CreatePresenterInput = __decorate([
+    (0, graphql_1.InputType)('CreatePresenterInput')
+], CreatePresenterInput);
 //# sourceMappingURL=create-presenter.input.js.map
