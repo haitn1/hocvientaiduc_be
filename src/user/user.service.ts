@@ -28,26 +28,24 @@ export class UserService {
         return user;
     }
 */
-        async findAll(): Promise<any[]> {
+        async findAll() {
           return await this.userRepo.find();
         }
-        async findOne(): Promise<any> {
-          return this.userRepo.findOne({});
-        }
+   
   
-        async findOneById(user_id: number): Promise<any> {
+        async findOneById(user_id: number){
           return this.userRepo.findOneBy({ user_id: user_id });
         }
   
-        async findOneByEmail(email: string): Promise<any> {
+        async findOneByEmail(email: string){
           console.log(`UserService- findOneByEmail email[${email}]`);
           return await this.userRepo.findOneBy({ email: email });
         }
-        async  createBySignIn(name: string , email : string , password: string):Promise<any> {
+        async  createBySignIn(name: string , email : string , password: string){
           return await this.userRepo.createBySignIn(name,email,password);
         }
 
-        async  create(user: UserCreaterDto):Promise<any> {
+        async  create(user: UserCreaterDto){
           return await this.userRepo.createUser(user);
         }
 
@@ -55,11 +53,11 @@ export class UserService {
         return  this.userRepo.findOne({});
       }
       
-      async activeByUserId(user_id: number): Promise<any> {
+      async activeByUserId(user_id: number){
         return await this.userRepo.activeByUserId(user_id);
       }
       
-      async remove(user_id: number): Promise<void> {
+      async remove(user_id: number) {
         await this.userRepo.removeUser(user_id);
       }
 }

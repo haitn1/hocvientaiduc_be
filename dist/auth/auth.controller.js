@@ -23,11 +23,11 @@ let AuthController = class AuthController {
         this.authService = authService;
     }
     async signUp(signupData) {
-        console.log(`AuthController - signup #[${JSON.stringify(signupData)}]`);
+        await console.log(`AuthController - signup #[${JSON.stringify(signupData)}]`);
         return await this.authService.signIn(signupData);
     }
     async login(data) {
-        console.log(`AuthController - login #[${JSON.stringify(data)}]`);
+        await console.log(`AuthController - login #[${JSON.stringify(data)}]`);
         return await this.authService.login(data);
     }
     getProfile(req) {

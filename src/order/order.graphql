@@ -1,0 +1,25 @@
+type Order {
+    id  : ID!
+    type: String
+    name: String
+    data: String
+    created: Date
+    updated: Date
+
+}
+type CreateOrder {
+    type: String
+    name: String
+    data: String
+}
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  order(id: Int): Order!
+  orders : [Order]
+}
+
+
+
+

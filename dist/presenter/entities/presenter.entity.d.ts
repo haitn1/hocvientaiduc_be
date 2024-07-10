@@ -1,5 +1,6 @@
-import { BaseEntity } from "typeorm";
-export declare class Presenter extends BaseEntity {
+export declare class PresenterEntity {
     id: number;
-    name: string;
+    name: String;
+    created: Date;
+    updated: Date;
 }

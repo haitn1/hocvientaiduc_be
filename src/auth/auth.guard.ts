@@ -6,6 +6,7 @@ import { Request } from 'express';
 
 import { Reflector } from "@nestjs/core";
 import { IS_PUBLIC_KEY } from "./decorators/public.decorator";
+import { GqlExecutionContext } from "@nestjs/graphql";
 @Injectable()
 export class AuthGuard implements CanActivate{
     constructor(
@@ -14,6 +15,7 @@ export class AuthGuard implements CanActivate{
     ) {}
     
     async canActivate(context: ExecutionContext): Promise<boolean> {
+
         const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
             context.getHandler(),
             context.getClass(),
@@ -25,7 +27,7 @@ export class AuthGuard implements CanActivate{
       
         const request = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(request);
-
+        console.log(`AuthGuard- token [${token}]`);
         if (!token) {
           throw new UnauthorizedException();
         }
@@ -39,6 +41,7 @@ export class AuthGuard implements CanActivate{
           // 💡 We're assigning the payload to the request object here
           // so that we can access it in our route handlers
           request['user'] = payload;
+          console.log(`AuthGuard- payload [${JSON.stringify(payload)}]`);
         } catch {
           throw new UnauthorizedException();
         }

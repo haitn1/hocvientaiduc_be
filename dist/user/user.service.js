@@ -24,9 +24,6 @@ let UserService = class UserService {
     async findAll() {
         return await this.userRepo.find();
     }
-    async findOne() {
-        return this.userRepo.findOne({});
-    }
     async findOneById(user_id) {
         return this.userRepo.findOneBy({ user_id: user_id });
     }

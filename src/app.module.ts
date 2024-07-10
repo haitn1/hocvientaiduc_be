@@ -4,27 +4,23 @@ import { UserModule } from './user/user.module';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PresenterModule } from './presenter/presenter.module';
-import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql/dist';
 
 import { AuthModule } from './auth/auth.module';
-import { JwtModule } from '@nestjs/jwt';
-import { ConfigService } from './config/config.service';
-import { ConfigModule } from './config/config.module';
-import { OrderModule } from './orders/order.module';
-
 
 @Module({
   imports:[ 
   AuthModule,
   UserModule, 
+  OrderModule,
   PresenterModule,
-  ProductModule,
   GraphQLModule.forRoot<ApolloDriverConfig>({
     driver: ApolloDriver,
     typePaths: ['./**/*.graphql'],
     installSubscriptionHandlers: true,
+    context: ({req}) => ({...req}),
   }),
   TypeOrmModule.forRoot({
      type: 'mysql',
@@ -37,6 +33,8 @@ import { OrderModule } from './orders/order.module';
       synchronize: true,
       autoLoadEntities: true,
 }),
+  
+
 ],
   controllers: [AppController],
   providers: [AppService ]

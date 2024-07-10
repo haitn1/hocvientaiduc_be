@@ -1,10 +1,17 @@
-import { BaseEntity, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Field } from "@nestjs/graphql";
+import { CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('presenter_tb')
-export class Presenter extends BaseEntity{
-   @PrimaryColumn()
-   id : number;
+export class PresenterEntity {
+    @PrimaryColumn()
+    id : number;
 
-   @Column()
-   name : string
+    @Field()
+    name:String;
+
+    @CreateDateColumn()
+    created:Date;
+
+    @UpdateDateColumn()
+    updated:Date;
 }

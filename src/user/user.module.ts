@@ -7,7 +7,6 @@ import { UserSubscriber } from "./entities/user.subscribers";
 import { UserResolver } from './user.resolver';
 import { DateScalar } from "src/common/scalars/date.scalar";
 import { UserRepository } from "./user.repository";
-import { OrderModule } from "src/orders/order.module";
 
 
 @Module({

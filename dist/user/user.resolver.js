@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const user_service_1 = require("./user.service");
-const user_schema_1 = require("./shemas/user.schema");
+const user_scchema_1 = require("./schemas/user.scchema");
 let UserResolver = class UserResolver {
     constructor(userService) {
         this.userService = userService;
@@ -32,28 +32,28 @@ let UserResolver = class UserResolver {
 };
 exports.UserResolver = UserResolver;
 __decorate([
-    (0, graphql_1.Query)(() => user_schema_1.User),
-    (0, graphql_1.Query)(() => [user_schema_1.User]),
+    (0, graphql_1.Query)(() => user_scchema_1.User),
+    (0, graphql_1.Query)(() => [user_scchema_1.User]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "users", null);
 __decorate([
-    (0, graphql_1.Query)(() => user_schema_1.User),
+    (0, graphql_1.Query)(() => user_scchema_1.User),
     __param(0, (0, graphql_1.Args)('user_id', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "user", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => user_schema_1.User),
+    (0, graphql_1.Mutation)(() => user_scchema_1.User),
     __param(0, (0, graphql_1.Args)({ name: 'user_id', type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "activeByUserId", null);
 exports.UserResolver = UserResolver = __decorate([
-    (0, graphql_1.Resolver)(() => user_schema_1.User),
+    (0, graphql_1.Resolver)(() => user_scchema_1.User),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserResolver);
 //# sourceMappingURL=user.resolver.js.map

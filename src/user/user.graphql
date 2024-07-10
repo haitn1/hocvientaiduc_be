@@ -9,8 +9,8 @@ type User {
     note : String
     presenter_id:Int
     active: Boolean
-    create_at : Date
-    update_at : Date
+    created : Date
+    updated : Date
 }
 
 

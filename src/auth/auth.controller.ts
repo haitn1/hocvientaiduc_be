@@ -22,7 +22,7 @@ export class AuthController{
         @Public()
         @Post('signup') //auth/signup
         async signUp(@Body() signupData : SignupDto){
-                console.log(`AuthController - signup #[${JSON.stringify(signupData)}]`);
+                await console.log(`AuthController - signup #[${JSON.stringify(signupData)}]`);
                 return await this.authService.signIn(signupData);
         }
         //POST Login
@@ -30,7 +30,7 @@ export class AuthController{
         @HttpCode(HttpStatus.OK)
         @Post('login') //auth/signup
         async login(@Body() data : LoginDto){
-                console.log(`AuthController - login #[${JSON.stringify(data)}]`);
+                await console.log(`AuthController - login #[${JSON.stringify(data)}]`);
                 return await this.authService.login(data);
         }
         

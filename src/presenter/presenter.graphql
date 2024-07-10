@@ -1,0 +1,26 @@
+type Presenter {
+  id: ID
+  name:String
+  created:Date
+  updated:Date
+}
+
+input CreatePresenterInput {
+    id: Int
+    name:String
+}
+
+input UpdatePresenterInput {
+  id: Int!
+}
+
+type Query {
+  presenters: [Presenter]
+  presenter(id: Int): Presenter
+}
+
+type Mutation {
+  createPresenter(createPresenterInput: CreatePresenterInput!): Presenter
+  updatePresenter(updatePresenterInput: UpdatePresenterInput!): Presenter
+  removePresenter(id: Int!): Presenter
+}

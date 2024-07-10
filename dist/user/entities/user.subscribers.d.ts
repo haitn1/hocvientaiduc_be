@@ -1,5 +1,5 @@
 import { EntitySubscriberInterface, InsertEvent } from 'typeorm';
-import { User } from '../shemas/user.schema';
+import { User } from '../schemas/user.scchema';
 import { UserRepository } from '../user.repository';
 import { UserEntity } from './user.entity';
 export declare class UserSubscriber implements EntitySubscriberInterface<User> {

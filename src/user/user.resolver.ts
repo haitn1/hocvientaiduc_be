@@ -2,7 +2,7 @@ import { Resolver,Query, Args, Int, Mutation, Subscription } from '@nestjs/graph
 
 import { UserService } from './user.service';
 
-import { User } from './shemas/user.schema';
+import { User } from './schemas/user.scchema';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -10,7 +10,7 @@ export class UserResolver {
     @Query(() => User)
 
     @Query(() => [User])
-    async users(): Promise<any[]> {
+    async users(){
       return await this.userService.findAll(); 
     }
 

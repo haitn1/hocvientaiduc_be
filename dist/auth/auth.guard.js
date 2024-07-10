@@ -30,6 +30,7 @@ let AuthGuard = class AuthGuard {
         }
         const request = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(request);
+        console.log(`AuthGuard- token [${token}]`);
         if (!token) {
             throw new common_1.UnauthorizedException();
         }
@@ -38,6 +39,7 @@ let AuthGuard = class AuthGuard {
                 secret: constants_1.jwtConstants.secret
             });
             request['user'] = payload;
+            console.log(`AuthGuard- payload [${JSON.stringify(payload)}]`);
         }
         catch {
             throw new common_1.UnauthorizedException();

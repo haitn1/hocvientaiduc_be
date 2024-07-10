@@ -5,7 +5,7 @@ import {
     InsertEvent,
   } from 'typeorm';
   
-import { User } from '../shemas/user.schema';
+import { User } from '../schemas/user.scchema';
 import { UserRepository } from '../user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';

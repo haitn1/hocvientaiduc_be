@@ -13,11 +13,10 @@ const user_module_1 = require("./user/user.module");
 const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const presenter_module_1 = require("./presenter/presenter.module");
-const product_module_1 = require("./product/product.module");
+const order_module_1 = require("./order/order.module");
 const apollo_1 = require("@nestjs/apollo");
 const dist_1 = require("@nestjs/graphql/dist");
 const auth_module_1 = require("./auth/auth.module");
-const order_module_1 = require("./orders/order.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,11 +27,11 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             order_module_1.OrderModule,
             presenter_module_1.PresenterModule,
-            product_module_1.ProductModule,
             dist_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 typePaths: ['./**/*.graphql'],
                 installSubscriptionHandlers: true,
+                context: ({ req }) => ({ ...req }),
             }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',

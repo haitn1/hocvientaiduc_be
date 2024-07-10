@@ -9,20 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Presenter = void 0;
+exports.PresenterEntity = void 0;
+const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("typeorm");
-let Presenter = class Presenter extends typeorm_1.BaseEntity {
+let PresenterEntity = class PresenterEntity {
 };
-exports.Presenter = Presenter;
+exports.PresenterEntity = PresenterEntity;
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", Number)
-], Presenter.prototype, "id", void 0);
+], PresenterEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], Presenter.prototype, "name", void 0);
-exports.Presenter = Presenter = __decorate([
+], PresenterEntity.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], PresenterEntity.prototype, "created", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], PresenterEntity.prototype, "updated", void 0);
+exports.PresenterEntity = PresenterEntity = __decorate([
     (0, typeorm_1.Entity)('presenter_tb')
-], Presenter);
+], PresenterEntity);
 //# sourceMappingURL=presenter.entity.js.map

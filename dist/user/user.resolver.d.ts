@@ -2,7 +2,7 @@ import { UserService } from './user.service';
 export declare class UserResolver {
     private userService;
     constructor(userService: UserService);
-    users(): Promise<any[]>;
-    user(user_id: number): Promise<any>;
-    activeByUserId(user_id: number): Promise<any>;
+    users(): Promise<import("./entities/user.entity").UserEntity[]>;
+    user(user_id: number): Promise<import("./entities/user.entity").UserEntity>;
+    activeByUserId(user_id: number): Promise<import("./entities/user.entity").UserEntity>;
 }

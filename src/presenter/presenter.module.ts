@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Presenter } from './entities/presenter.entity';
+import { PresenterService } from './presenter.service';
+import { PresenterResolver } from './presenter.resolver';
 
 @Module({
-    imports:[TypeOrmModule.forFeature([Presenter])]
+  providers: [PresenterResolver, PresenterService],
 })
 export class PresenterModule {}
