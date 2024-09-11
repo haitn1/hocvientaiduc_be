@@ -24,10 +24,10 @@ import { AuthModule } from './auth/auth.module';
   }),
   TypeOrmModule.forRoot({
      type: 'mysql',
-      host: 'localhost',
+      host: '125.212.218.93',
       port: 3306,
-      username:  'root',
-      password:'',
+      username:  'root_haitn',
+      password:'HVTD01!@1986',
       database: 'hocvientaiduc_db',
       entities:[],
       synchronize: true,
