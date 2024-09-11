@@ -16,4 +16,5 @@ export declare class AuthService {
         refresh_token: string;
     }>;
     generateUserToken(user: UserEntity): Promise<string>;
+    validateUser(email: string, pass: string): Promise<any>;
 }

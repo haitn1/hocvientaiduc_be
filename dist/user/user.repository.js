@@ -23,7 +23,8 @@ class UserRepository extends typeorm_1.Repository {
         u.presenter_id = user.presenter_id;
         u.created = new Date();
         u.updated = new Date();
-        const us = await this.save(u);
+        const ii = this.create(u);
+        const us = await this.save(ii);
         await console.log(`UserService - Insert new User ${JSON.stringify(us)}`);
         return us;
     }

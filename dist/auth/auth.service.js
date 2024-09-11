@@ -52,8 +52,17 @@ let AuthService = class AuthService {
         };
     }
     async generateUserToken(user) {
-        const access_token = this.jwtService.signAsync({ user_id: user.user_id }, { expiresIn: '1h' });
+        const payload = { username: user.email, sub: user.user_id };
+        const access_token = this.jwtService.signAsync(payload, { expiresIn: '1h' });
         return access_token;
+    }
+    async validateUser(email, pass) {
+        const user = await this.userService.findOneByEmail(email);
+        if (user && await bcrypt.compare(pass, user.password)) {
+            const { password, ...result } = user;
+            return result;
+        }
+        return null;
     }
 };
 exports.AuthService = AuthService;
